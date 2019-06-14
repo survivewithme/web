@@ -5,6 +5,7 @@ import { Provider } from 'mobx-react'
 import axios from 'axios'
 import Home from './Home'
 import Login from './Login'
+import CoachCreate from './CoachCreate'
 import throttle from 'lodash.throttle'
 
 axios.defaults.baseURL = 'https://api.survivewithme.com'
@@ -38,6 +39,7 @@ ReactDOM.render(
     <Router>
       <Route path="/" component={Home} exact />
       <Route path="/login" component={Login} exact />
+      <Route path="/coach/create" component={CoachCreate} />
     </Router>
   </Provider>,
   appDiv
