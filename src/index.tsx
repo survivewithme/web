@@ -5,10 +5,11 @@ import { Provider } from 'mobx-react'
 import axios from 'axios'
 import Home from './Home'
 import Login from './Login'
-import CoachCreate from './CoachCreate'
+import UserCreate from './UserCreate'
 import throttle from 'lodash.throttle'
+import AuthStore from './stores/auth'
 
-axios.defaults.baseURL = 'https://api.survivewithme.com'
+axios.defaults.baseURL = 'https://backend-jchancehud.survivewithme.now.sh'
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.headers['content-type'] = 'application/json'
 
@@ -19,7 +20,9 @@ Object.assign(document.body.style, {
   minHeight: window.innerHeight,
 })
 
-const stores = {}
+const stores = {
+  auth: new AuthStore(),
+}
 
 const appDiv = document.getElementById('app')
 const setAppStyle = () => {
@@ -37,9 +40,9 @@ setAppStyle()
 ReactDOM.render(
   <Provider {...stores}>
     <Router>
-      <Route path="/" component={Home} exact />
+      <Route path="/home" component={Home} exact />
       <Route path="/login" component={Login} exact />
-      <Route path="/coach/create" component={CoachCreate} />
+      <Route path="/users/create" component={UserCreate} />
     </Router>
   </Provider>,
   appDiv

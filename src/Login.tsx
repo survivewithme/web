@@ -1,18 +1,40 @@
 import React from 'react'
 import SignupTextInput from './SignupTextInput'
+import { inject, observer } from 'mobx-react'
+import AuthStore from './stores/auth'
+import { Redirect } from 'react-router'
 
-export default class Login extends React.Component<{}> {
-  async onLogin() {
-    // Stub
-    console.log('onLogin')
+@inject('auth')
+@observer
+export default class Login extends React.Component<{
+  auth: AuthStore
+}> {
+  state = {
+    email: '',
+    password: '',
+    redirect: false,
   }
 
-  async onForgot() {
+  onLogin = async () => {
+    try {
+      await this.props.auth.login(this.state)
+      this.setState({
+        redirect: true,
+      })
+    } catch (err) {
+      alert('There was a problem logging in.')
+    }
+  }
+
+  onForgot = async () => {
     // Stub
-    console.log('onForgot')
+    alert('Bummer')
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/home" />
+    }
     return (
       <div
         style={{
@@ -34,7 +56,15 @@ export default class Login extends React.Component<{}> {
             maxHeight: 200,
           }}
         >
-          <SignupTextInput autoFocus type="text" placeholder="email" />
+          <SignupTextInput
+            autoFocus
+            type="text"
+            placeholder="email"
+            onChange={(e: any) => {
+              this.setState({ email: e.target.value })
+            }}
+            value={this.state.email}
+          />
           <SignupTextInput
             type="password"
             onKeyPress={(e: any) => {
@@ -42,6 +72,10 @@ export default class Login extends React.Component<{}> {
                 this.onLogin()
               }
             }}
+            onChange={(e: any) => {
+              this.setState({ password: e.target.value })
+            }}
+            value={this.state.password}
             placeholder="password"
           />
           <div
