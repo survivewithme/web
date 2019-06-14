@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import axios from 'axios'
 import Home from './Home'
+import Login from './Login'
 import throttle from 'lodash.throttle'
 
 axios.defaults.baseURL = 'https://api.survivewithme.com'
@@ -25,6 +26,7 @@ const setAppStyle = () => {
     'style',
     `
 min-height: ${window.innerHeight}px;
+display: flex;
 `
   )
 }
@@ -35,6 +37,7 @@ ReactDOM.render(
   <Provider {...stores}>
     <Router>
       <Route path="/" component={Home} exact />
+      <Route path="/login" component={Login} exact />
     </Router>
   </Provider>,
   appDiv
