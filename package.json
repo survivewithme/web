@@ -11,6 +11,11 @@
     "deploy:ci": "npm run build && now --target production -t $NOW_TOKEN --scope survivewithme",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "eslintConfig": {
+    "extends": [
+      "@jchancehud/eslint-config-typescript"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
