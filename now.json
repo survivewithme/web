@@ -2,21 +2,26 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@now/static-build",
-      "config": {
-        "distDir": "build"
-      }
+      "src": "./build/index.html",
+      "use": "@now/static"
+    },
+    {
+      "src": "./build/main.js",
+      "use": "@now/static"
     }
   ],
   "routes": [
     {
       "src": "/",
-      "dest": "/index.html"
+      "dest": "/build/index.html"
     },
     {
       "src": "/offer/.+",
-      "dest": "/index.html"
+      "dest": "/build/index.html"
+    },
+    {
+      "src": "/main.js",
+      "dest": "/build/main.js"
     }
   ]
 }
