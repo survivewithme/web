@@ -7,6 +7,7 @@
     "start": "webpack-dev-server --config webpack.config.js",
     "clean": "rm -r ./build || true",
     "build": "npm run clean && webpack --config webpack.prod.js",
+    "now-build": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -32,6 +33,7 @@
     "mobx-react": "^6.0.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
     "typescript": "^3.5.2",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4",
