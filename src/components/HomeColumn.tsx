@@ -17,7 +17,7 @@ export default class HomeColumn extends React.Component<{
           style={{
             marginTop: 4,
             border: `1px solid ${Colors.black}`,
-            borderRadius: 4,
+            borderRadius: 2,
             padding: 8,
             minHeight: 300,
           }}

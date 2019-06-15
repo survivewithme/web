@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import axios from 'axios'
-import Home from './Home'
+import Admin from './Admin'
 import Login from './Login'
 import UserCreate from './UserCreate'
 import throttle from 'lodash.throttle'
@@ -44,7 +44,7 @@ setAppStyle()
 ReactDOM.render(
   <Provider {...stores}>
     <Router>
-      <Route path="/home" component={Home} exact />
+      <Route path="/admin" component={Admin} exact />
       <Route path="/login" component={Login} exact />
       <Route path="/signup" component={UserCreate} />
     </Router>

@@ -7,6 +7,7 @@ import Button from './Button'
 @inject('auth')
 @observer
 export default class Header extends React.Component<{
+  screenName?: string
   auth?: AuthStore
 }> {
   render() {
@@ -16,7 +17,8 @@ export default class Header extends React.Component<{
           height: 70,
           display: 'flex',
           justifyContent: 'space-between',
-          backgroundColor: Colors.offWhite,
+          backgroundColor: Colors.white,
+          borderBottom: `1px solid ${Colors.black}`,
         }}
       >
         <div
@@ -28,7 +30,19 @@ export default class Header extends React.Component<{
             padding: 8,
           }}
         >
-          <Button>Survive With Me</Button>
+          <div style={{ display: 'flex' }}>
+            <Button style={{ marginRight: 8 }}>Survive With Me</Button>
+            {this.props.screenName ? (
+              <Button
+                style={{
+                  backgroundColor: Colors.black,
+                  color: Colors.offWhite,
+                }}
+              >
+                {this.props.screenName}
+              </Button>
+            ) : null}
+          </div>
           <div style={{ display: 'flex' }}>
             <div
               style={{

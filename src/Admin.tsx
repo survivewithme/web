@@ -11,7 +11,7 @@ import Button from './components/Button'
 
 @inject('auth', 'organization')
 @observer
-export default class Home extends React.Component<{
+export default class Admin extends React.Component<{
   auth: AuthStore
   organization: OrganizationStore
 }> {
@@ -28,8 +28,15 @@ export default class Home extends React.Component<{
       return <Redirect to="login" />
     }
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-        <Header />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1,
+          backgroundColor: Colors.white,
+        }}
+      >
+        <Header screenName="Admin Panel" />
         <div
           style={{
             padding: 8,
@@ -44,8 +51,7 @@ export default class Home extends React.Component<{
               <div
                 key={organization._id}
                 style={{
-                  borderRadius: 4,
-                  border: `1px solid ${Colors.black}`,
+                  borderBottom: `1px solid ${Colors.black}`,
                   padding: 8,
                 }}
               >
@@ -80,8 +86,9 @@ export default class Home extends React.Component<{
               </div>
             ))}
           </HomeColumn>
-          <HomeColumn title="Patients"></HomeColumn>
+          <HomeColumn title="Admins"></HomeColumn>
           <HomeColumn title="Coaches"></HomeColumn>
+          <HomeColumn title="Patients"></HomeColumn>
         </div>
       </div>
     )
