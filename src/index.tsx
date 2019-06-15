@@ -11,7 +11,7 @@ import AuthStore from './stores/auth'
 import OrganizationStore from './stores/organization'
 import UserStore from './stores/user'
 
-axios.defaults.baseURL = 'https://backend-jchancehud.survivewithme.now.sh'
+axios.defaults.baseURL = 'https://backend.survivewithme.now.sh'
 // axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.headers['content-type'] = 'application/json'
 
