@@ -44,6 +44,7 @@ setAppStyle()
 ReactDOM.render(
   <Provider {...stores}>
     <Router>
+      <Route path="/" component={Login} exact />
       <Route path="/admin" component={Admin} exact />
       <Route path="/login" component={Login} exact />
       <Route path="/signup" component={UserCreate} />
