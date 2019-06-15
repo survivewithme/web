@@ -50,7 +50,7 @@ export default class Header extends React.Component<{
                 : 'Not Authenticated'}
             </Button>
             <Button
-              style={{ backgroundColor: Colors.black }}
+              style={{ backgroundColor: Colors.red }}
               onClick={() => {
                 this.props.auth.logout()
               }}
