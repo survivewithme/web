@@ -14,7 +14,6 @@ export default class Header extends React.Component<{
     return (
       <div
         style={{
-          height: 70,
           display: 'flex',
           justifyContent: 'space-between',
           backgroundColor: Colors.white,
@@ -27,30 +26,38 @@ export default class Header extends React.Component<{
             flex: 1,
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: 8,
           }}
         >
-          <div style={{ display: 'flex' }}>
-            <Button style={{ marginRight: 8 }}>Survive With Me</Button>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <Button style={{ margin: 8 }}>Survive With Me</Button>
             {this.props.screenName ? (
               <Button
                 style={{
                   backgroundColor: Colors.black,
-                  color: Colors.offWhite,
+                  margin: 8,
                 }}
               >
                 {this.props.screenName}
               </Button>
             ) : null}
           </div>
-          <div style={{ display: 'flex' }}>
-            <Button style={{ marginRight: 8 }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              flexWrap: 'wrap',
+            }}
+          >
+            <Button style={{ margin: 8 }}>
               {this.props.auth.token
                 ? this.props.auth._activeAuth.email
                 : 'Not Authenticated'}
             </Button>
             <Button
-              style={{ backgroundColor: Colors.red }}
+              style={{
+                backgroundColor: Colors.red,
+                margin: 8,
+              }}
               onClick={() => {
                 this.props.auth.logout()
               }}
