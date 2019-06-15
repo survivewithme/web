@@ -44,33 +44,19 @@ export default class Header extends React.Component<{
             ) : null}
           </div>
           <div style={{ display: 'flex' }}>
-            <div
-              style={{
-                backgroundColor: Colors.green,
-                borderRadius: 4,
-                padding: 4,
-                color: Colors.offWhite,
-                marginRight: 8,
-              }}
-            >
+            <Button style={{ marginRight: 8 }}>
               {this.props.auth.token
                 ? this.props.auth._activeAuth.email
                 : 'Not Authenticated'}
-            </div>
-            <div
-              style={{
-                backgroundColor: Colors.green,
-                borderRadius: 4,
-                padding: 4,
-                color: Colors.offWhite,
-                cursor: 'pointer',
-              }}
+            </Button>
+            <Button
+              style={{ backgroundColor: Colors.black }}
               onClick={() => {
                 this.props.auth.logout()
               }}
             >
               Logout
-            </div>
+            </Button>
           </div>
         </div>
       </div>
