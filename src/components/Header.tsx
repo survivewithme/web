@@ -2,6 +2,7 @@ import React from 'react'
 import { inject, observer } from 'mobx-react'
 import AuthStore from '../stores/auth'
 import Colors from '../Colors'
+import Button from './Button'
 
 @inject('auth')
 @observer
@@ -27,16 +28,7 @@ export default class Header extends React.Component<{
             padding: 8,
           }}
         >
-          <div
-            style={{
-              backgroundColor: Colors.green,
-              borderRadius: 4,
-              padding: 4,
-              color: Colors.offWhite,
-            }}
-          >
-            Survive With Me
-          </div>
+          <Button>Survive With Me</Button>
           <div style={{ display: 'flex' }}>
             <div
               style={{
