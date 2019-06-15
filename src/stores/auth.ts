@@ -66,8 +66,9 @@ export default class AuthStore {
       const { data } = await axios.post('/users', user)
       this.storeAuth(data)
     } catch (err) {
-      console.log('Error creating user', err)
-      throw err
+      const { message } = err.response && err.response.data
+      console.log('Error creating user:', message)
+      throw new Error(message)
     }
   }
 

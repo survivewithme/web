@@ -8,7 +8,7 @@ import UserStore from './stores/user'
 
 @inject('auth', 'user')
 @observer
-export default class CoachCreate extends React.Component<{
+export default class UserCreate extends React.Component<{
   auth: AuthStore
   user: UserStore
   location: any
@@ -44,7 +44,7 @@ export default class CoachCreate extends React.Component<{
       })
       this.setState({ redirect: true })
     } catch (err) {
-      alert('There was a problem creating your account.')
+      alert(err)
     }
   }
 
