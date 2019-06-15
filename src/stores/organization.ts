@@ -5,9 +5,22 @@ import AuthStore from './auth'
 export default class OrganizationStore {
   @observable _byId: { [key: string]: any } = {}
   @observable list: any[] = []
+  @observable coaches: any[] = []
 
   byId(_id: string) {
     return this._byId[_id] || {}
+  }
+
+  async loadCoaches() {
+    try {
+      const { data } = await axios.get('/organizations/coaches', {
+        params: { token: AuthStore.token },
+      })
+      this.coaches = data
+    } catch (err) {
+      console.log('Error loading coaches', err)
+      throw err
+    }
   }
 
   async load() {

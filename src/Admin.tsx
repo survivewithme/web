@@ -25,6 +25,7 @@ export default class Admin extends React.Component<{
     await Promise.all([
       this.props.organization.load(),
       this.props.user.loadAdmins(),
+      this.props.organization.loadCoaches(),
     ])
   }
 
@@ -115,7 +116,19 @@ export default class Admin extends React.Component<{
               </div>
             ))}
           </HomeColumn>
-          <HomeColumn title="Coaches"></HomeColumn>
+          <HomeColumn title="Coaches">
+            {this.props.organization.coaches.map((user: any) => (
+              <div
+                key={user._id}
+                style={{
+                  borderBottom: `1px solid ${Colors.black}`,
+                  padding: 8,
+                }}
+              >
+                <div>{`${user.firstname} ${user.lastname}`}</div>
+              </div>
+            ))}
+          </HomeColumn>
           <HomeColumn title="Patients"></HomeColumn>
         </div>
       </div>
