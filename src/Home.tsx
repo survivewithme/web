@@ -29,9 +29,22 @@ export default class Home extends React.Component<{
               <input
                 style={{ marginRight: 8 }}
                 type="text"
+                readOnly
                 value={organization.inviteLink}
               />
-              <button>Copy Link</button>
+              <button
+                onClick={() => {
+                  const elem = document.createElement('textarea')
+                  elem.value = organization.inviteLink
+                  elem.setAttribute('readonly', '')
+                  document.body.appendChild(elem)
+                  elem.select()
+                  document.execCommand('copy')
+                  document.body.removeChild(elem)
+                }}
+              >
+                Copy Link
+              </button>
             </div>
           ))}
         </div>
