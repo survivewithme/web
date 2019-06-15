@@ -12,16 +12,12 @@
   ],
   "routes": [
     {
-      "src": "/",
-      "dest": "/build/index.html"
-    },
-    {
-      "src": "/offer/.+",
-      "dest": "/build/index.html"
-    },
-    {
       "src": "/main.js",
       "dest": "/build/main.js"
+    },
+    {
+      "src": "(.*)",
+      "dest": "/build/index.html"
     }
   ]
 }
