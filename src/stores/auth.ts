@@ -26,9 +26,8 @@ export default class AuthStore {
   get token(): string {
     if (!this._activeAuth) {
       this.loadAuth()
-      return this.token
     }
-    return this._activeAuth.token
+    return this._activeAuth && this._activeAuth.token
   }
 
   static get token() {
