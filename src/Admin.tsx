@@ -16,7 +16,7 @@ export default class Admin extends React.Component<{
   organization: OrganizationStore
 }> {
   state = {
-    copyText: 'Copy Signup Link',
+    copyTextById: {} as any,
   }
 
   async componentDidMount() {
@@ -73,13 +73,24 @@ export default class Admin extends React.Component<{
                         elem.select()
                         document.execCommand('copy')
                         document.body.removeChild(elem)
-                        this.setState({ copyText: 'Copied!' })
+                        this.setState({
+                          copyTextById: {
+                            ...this.state.copyTextById,
+                            [organization._id]: 'Copied',
+                          },
+                        })
                         setTimeout(() => {
-                          this.setState({ copyText: 'Copy Signup Link' })
+                          this.setState({
+                            copyTextById: {
+                              ...this.state.copyTextById,
+                              [organization._id]: '',
+                            },
+                          })
                         }, 2000)
                       }}
                     >
-                      {this.state.copyText}
+                      {this.state.copyTextById[organization._id] ||
+                        'Copy Signup Link'}
                     </Button>
                   </div>
                 </div>
