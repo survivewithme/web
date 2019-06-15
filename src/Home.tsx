@@ -3,12 +3,18 @@ import { inject, observer } from 'mobx-react'
 import Header from './components/Header'
 import { Redirect } from 'react-router'
 import AuthStore from './stores/auth'
+import OrganizationStore from './stores/organization'
 
-@inject('auth')
+@inject('auth', 'organization')
 @observer
 export default class Home extends React.Component<{
   auth: AuthStore
+  organization: OrganizationStore
 }> {
+  async componentDidMount() {
+    await this.props.organization.load()
+  }
+
   render() {
     if (!this.props.auth.token) {
       return <Redirect to="login" />
@@ -16,8 +22,18 @@ export default class Home extends React.Component<{
     return (
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
         <Header />
-        <div style={{ padding: 8, flex: 1, backgroundColor: 'red'}}>
-          authed home
+        <div style={{ padding: 8, borderRadius: 4, border: '1px solid #000' }}>
+          {this.props.organization.list.map((organization: any) => (
+            <div key={organization._id}>
+              <div>{organization.name}</div>
+              <input
+                style={{ marginRight: 8 }}
+                type="text"
+                value={organization.inviteLink}
+              />
+              <button>Copy Link</button>
+            </div>
+          ))}
         </div>
       </div>
     )
