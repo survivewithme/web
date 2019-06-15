@@ -45,7 +45,9 @@ export default class Header extends React.Component<{
               color: Colors.offWhite,
             }}
           >
-            {this.props.auth.token ? 'Authenticated' : 'Not Authenticated'}
+            {this.props.auth.token
+              ? this.props.auth._activeAuth.email
+              : 'Not Authenticated'}
           </div>
         </div>
       </div>

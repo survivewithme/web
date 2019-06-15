@@ -8,7 +8,7 @@ export default (props: any) => (
       borderRadius: 4,
       border: '1px solid black',
       padding: 8,
-      margin: 8,
+      margin: 4,
       flex: 1,
       display: 'block',
     }}

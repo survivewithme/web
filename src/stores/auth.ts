@@ -37,6 +37,18 @@ export default class AuthStore {
     return auth.token
   }
 
+  async parseInviteToken(token: string) {
+    try {
+      const { data } = await axios.get('/users/invite/parse', {
+        params: { token },
+      })
+      return data
+    } catch (err) {
+      console.log('Error parsing invite token', err)
+      throw err
+    }
+  }
+
   async createUser(user: {
     password: string
     firstname: string

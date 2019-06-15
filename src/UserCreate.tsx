@@ -4,11 +4,13 @@ import SignupTextInput from './components/SignupTextInput'
 import AuthStore from './stores/auth'
 import queryString from 'query-string'
 import { Redirect } from 'react-router'
+import UserStore from './stores/user'
 
-@inject('auth')
+@inject('auth', 'user')
 @observer
 export default class CoachCreate extends React.Component<{
   auth: AuthStore
+  user: UserStore
   location: any
 }> {
   state = {
@@ -19,18 +21,26 @@ export default class CoachCreate extends React.Component<{
     lastname: '',
     email: '',
     redirect: false,
+    isReferral: false,
+    referringOrganization: {},
+  }
+
+  async componentDidMount() {
+    const { token } = queryString.parse(this.props.location.search)
+    if (!token) return
+    const parsed = await this.props.user.parseSignupToken(token as string)
+    this.setState({
+      isReferral: true,
+      referringOrganization: parsed.organization,
+    })
   }
 
   onSignUp = async () => {
     try {
-      const { token, organizationId } = queryString.parse(
-        this.props.location.search
-      )
-      console.log(this.state, token)
+      const { token } = queryString.parse(this.props.location.search)
       await this.props.auth.createUser({
         ...this.state,
-        token: token as string,
-        organizationId: organizationId as string,
+        token: (token as string) || '',
       })
       this.setState({ redirect: true })
     } catch (err) {
@@ -52,16 +62,23 @@ export default class CoachCreate extends React.Component<{
           flexDirection: 'column',
         }}
       >
-        <div>Signup</div>
+        <div style={{ margin: 8 }}>Signup</div>
         <div
           style={{
             backgroundColor: '#efefef',
             borderRadius: 4,
             border: '1px solid black',
             padding: 8,
-            maxWidth: 400,
+            maxWidth: 300,
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
+          {this.state.isReferral ? (
+            <div style={{ margin: 8 }}>
+              Organization: {this.state.referringOrganization.name}
+            </div>
+          ) : null}
           <SignupTextInput
             autoFocus
             type="text"
@@ -101,7 +118,7 @@ export default class CoachCreate extends React.Component<{
               this.setState({ lastname: e.target.value })
             }}
             value={this.state.lastname}
-            onKeyPress={(e) => {
+            onKeyPress={(e: any) => {
               if (e.key === 'Enter') {
                 this.onSignUp()
               }

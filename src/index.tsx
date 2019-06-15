@@ -8,6 +8,8 @@ import Login from './Login'
 import UserCreate from './UserCreate'
 import throttle from 'lodash.throttle'
 import AuthStore from './stores/auth'
+import OrganizationStore from './stores/organization'
+import UserStore from './stores/user'
 
 axios.defaults.baseURL = 'https://backend-jchancehud.survivewithme.now.sh'
 axios.defaults.baseURL = 'http://localhost:4000'
@@ -22,6 +24,8 @@ Object.assign(document.body.style, {
 
 const stores = {
   auth: new AuthStore(),
+  organization: new OrganizationStore(),
+  user: new UserStore(),
 }
 
 const appDiv = document.getElementById('app')
@@ -42,7 +46,7 @@ ReactDOM.render(
     <Router>
       <Route path="/home" component={Home} exact />
       <Route path="/login" component={Login} exact />
-      <Route path="/users/create" component={UserCreate} />
+      <Route path="/signup" component={UserCreate} />
     </Router>
   </Provider>,
   appDiv
