@@ -8,7 +8,7 @@ export default class HomeColumn extends React.Component<{
     return (
       <div
         style={{
-          minWidth: 300,
+          minWidth: 400,
           margin: 8,
         }}
       >

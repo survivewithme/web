@@ -8,19 +8,24 @@ import Colors from './Colors'
 import SignupTextInput from './components/SignupTextInput'
 import HomeColumn from './components/HomeColumn'
 import Button from './components/Button'
+import UserStore from './stores/user'
 
-@inject('auth', 'organization')
+@inject('auth', 'organization', 'user')
 @observer
 export default class Admin extends React.Component<{
   auth: AuthStore
   organization: OrganizationStore
+  user: UserStore
 }> {
   state = {
     copyTextById: {} as any,
   }
 
   async componentDidMount() {
-    await this.props.organization.load()
+    await Promise.all([
+      this.props.organization.load(),
+      this.props.user.loadAdmins(),
+    ])
   }
 
   render() {
@@ -97,7 +102,19 @@ export default class Admin extends React.Component<{
               </div>
             ))}
           </HomeColumn>
-          <HomeColumn title="Admins"></HomeColumn>
+          <HomeColumn title="Admins">
+            {this.props.user.adminList.map((user: any) => (
+              <div
+                key={user._id}
+                style={{
+                  borderBottom: `1px solid ${Colors.black}`,
+                  padding: 8,
+                }}
+              >
+                <div>{`${user.firstname} ${user.lastname} - ${user.email}`}</div>
+              </div>
+            ))}
+          </HomeColumn>
           <HomeColumn title="Coaches"></HomeColumn>
           <HomeColumn title="Patients"></HomeColumn>
         </div>
