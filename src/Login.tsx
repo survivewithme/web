@@ -1,5 +1,5 @@
 import React from 'react'
-import SignupTextInput from './SignupTextInput'
+import SignupTextInput from './components/SignupTextInput'
 import { inject, observer } from 'mobx-react'
 import AuthStore from './stores/auth'
 import { Redirect } from 'react-router'
