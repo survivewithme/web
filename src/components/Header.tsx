@@ -37,17 +37,34 @@ export default class Header extends React.Component<{
           >
             Survive With Me
           </div>
-          <div
-            style={{
-              backgroundColor: Colors.green,
-              borderRadius: 4,
-              padding: 4,
-              color: Colors.offWhite,
-            }}
-          >
-            {this.props.auth.token
-              ? this.props.auth._activeAuth.email
-              : 'Not Authenticated'}
+          <div style={{ display: 'flex' }}>
+            <div
+              style={{
+                backgroundColor: Colors.green,
+                borderRadius: 4,
+                padding: 4,
+                color: Colors.offWhite,
+                marginRight: 8,
+              }}
+            >
+              {this.props.auth.token
+                ? this.props.auth._activeAuth.email
+                : 'Not Authenticated'}
+            </div>
+            <div
+              style={{
+                backgroundColor: Colors.green,
+                borderRadius: 4,
+                padding: 4,
+                color: Colors.offWhite,
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                this.props.auth.logout()
+              }}
+            >
+              Logout
+            </div>
           </div>
         </div>
       </div>

@@ -37,6 +37,11 @@ export default class AuthStore {
     return auth.token
   }
 
+  logout() {
+    localStorage.removeItem('auth')
+    this._activeAuth = undefined
+  }
+
   async parseInviteToken(token: string) {
     try {
       const { data } = await axios.get('/users/invite/parse', {

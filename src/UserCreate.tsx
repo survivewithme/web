@@ -49,7 +49,7 @@ export default class CoachCreate extends React.Component<{
   }
 
   render() {
-    if (this.state.redirect) {
+    if (this.props.auth.token || this.state.redirect) {
       return <Redirect to="/home" />
     }
     return (
