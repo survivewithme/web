@@ -33,7 +33,7 @@ export default class Login extends React.Component<{
 
   render() {
     if (this.props.auth.token || this.state.redirect) {
-      return <Redirect to="/home" />
+      return <Redirect to="/admin" />
     }
     return (
       <div
